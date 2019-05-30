@@ -11,6 +11,8 @@ from pprint import pprint
 
 def on_connect(mqttc, obj, flags, rc):
     print("rc: " + str(rc))
+    print(obj)
+    print(flags)
 
 def on_message(mqttc, obj, msg):
     global on_mode, off_mode, state, on_modes, off_modes
