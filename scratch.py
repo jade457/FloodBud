@@ -1,6 +1,9 @@
 from collections import defaultdict
 
 ##
-foo = defaultdict(lambda x: x)
-
-foo['potato']
+hello = 'hello'
+world = 'world'
+foo = []
+foo.append({hello : world})
+##
+foo

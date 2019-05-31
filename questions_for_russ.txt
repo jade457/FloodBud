@@ -1,1 +1,0 @@
-Why use a QOS value of 0?
