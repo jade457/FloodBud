@@ -1,0 +1,13 @@
+Why use a QOS value of 0?
+
+correlation between sensor depth and 'actual flooding'
+
+hey, flood levels are decreasing / increasing here
+
+how fast do flood waters flow away?
+
+flood waters will reach your house in 2 hours
+
+given a hundred observations, how do you get the next 100 observation?
+
+Why do all of the sensors only have one observation type?
