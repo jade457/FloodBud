@@ -1,47 +1,7 @@
-<!hi
-
-			d3.csv("data-clean.csv", function(d) {
-			  return {
-				X0: d.X0, 
-				X1: d.X1,
-				Y: d.Y,
-				console.log(d)
-			 };
-			}); 
-			
-			
-			
-			d3.csv("Matthew_FilteredPeaks.csv", function(data) {
-			 	
-			 	data.forEach(function(d){ 
-			
-					latitude_dd = d.latitude_dd ; 
-					longitude_dd = d.longitude_dd ; 
-					
-				});
-			 	console.log(data) 
-			}); 
-			
-			
-			
-			var circle = L.circle([arr[0].latitude_dd, arr[0].longitude_dd], {
-				color: 'red',
-				fillColor: '#f03',
-				fillOpacity: 0.5,
-				radius: 500
-			}).addTo(mymap);
-			
-			
-			
-			
-			
->
-
-
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
-        <title>Testing Gradient</title>
+        <title>CDS dashboard</title>
         
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
 		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -55,13 +15,13 @@
 		<script src="https://d3js.org/d3.v4.min.js"></script>
         
 	<style>
-		#mapid {  width: 800px; height: 600px; }
-	</style> 
+		#mapid { width: 800px; height: 600px; }
+	</style>
 	   
     </head>
     <body>
         
-        <h1>Map!</h1>
+        <h1>Our dashboard (beta)</h1>
         
         <div id="mapid"></div>
       
