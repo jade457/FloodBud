@@ -21,7 +21,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
-        <title>Testing Gradient</title>
+        <title>Testing</title>
         
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
 		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -108,13 +108,10 @@
 				
 				function getColor(d) { 
 					var norm = normalize(d)
-					
-					return 'red'
+					return 'rgb('+ parseInt(255*norm)+',0,'+ parseInt(255*(1-norm) )+')' 
 				}
 				
-				
 				arr.forEach(function(d) { 
-					console.log( normalize(d.peak_stage) )
 					var circle = L.circle( [ d.latitude_dd, d.longitide_dd] , {
 						color: getColor(d.peak_stage),
 						fillColor: getColor(d.peak_stage), 
