@@ -1,0 +1,501 @@
+rc: 0
+Subscribed: 1 (0,)
+---
+topic =  coastal_environment/devices/gt-envsense-004/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-004","hardware_serial":"0004A30B00212EB0","port":12,"counter":2156,"payload_raw":"AiGKAwy5BAskJxE=","payload_fields":{"event":"varsample","poweroncount":8586,"pressure":10001,"temperature":2852,"ultrasonic_distance":3257},"metadata":{"time":"2019-05-30T01:54:45.68831797Z","frequency":904.1,"modulation":"LORA","data_rate":"SF7BW125","airtime":61696000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_bryan_001","gtw_trusted":true,"timestamp":2024599843,"time":"2019-05-30T01:54:45.622367Z","channel":1,"rssi":-63,"snr":8.25,"rf_chain":0,"latitude":31.791616,"longitude":-81.20251,"altitude":-9},{"gtw_id":"gatech_bryan_002","gtw_trusted":true,"timestamp":731064771,"time":"2019-05-30T01:58:42Z","channel":1,"rssi":-70,"snr":8.75,"rf_chain":0,"latitude":31.789827,"longitude":-81.20243,"location_source":"registry"}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-004/up/ultrasonic_distance
+qos =  0
+payload =  3257
+---
+---
+topic =  coastal_environment/devices/gt-envsense-004/up/temperature
+qos =  0
+payload =  2852
+---
+---
+topic =  coastal_environment/devices/gt-envsense-004/up/pressure
+qos =  0
+payload =  10001
+---
+---
+topic =  coastal_environment/devices/gt-envsense-004/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-004/up/poweroncount
+qos =  0
+payload =  8586
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-025","hardware_serial":"0004A30B00288DEE","port":12,"counter":456,"payload_raw":"AgEuAwWwBQAUAK0ABA==","payload_fields":{"event":"varsample","poweroncount":302,"ultrasonic_distance":1456,"wave_interval":173,"wave_numsamples":20,"wave_significantheight":4},"metadata":{"time":"2019-05-30T01:54:54.265756007Z","frequency":904.3,"modulation":"LORA","data_rate":"SF8BW125","airtime":113152000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_009","gtw_trusted":true,"timestamp":3677734652,"time":"2019-05-30T01:54:54.167731167Z","channel":2,"rssi":-118,"snr":1,"rf_chain":0,"latitude":32.063454,"longitude":-81.205536,"altitude":13}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/poweroncount
+qos =  0
+payload =  302
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/ultrasonic_distance
+qos =  0
+payload =  1456
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_interval
+qos =  0
+payload =  173
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_significantheight
+qos =  0
+payload =  4
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-025","hardware_serial":"0004A30B00288DEE","port":11,"counter":457,"payload_raw":"FACtAAQFsQWuBa4FsQWwBa8FsAWyBbEFrwWwBbIFsQWvBbEFsQWyBa8FsAWx","payload_fields":{"event":"multisample","wave_interval":173,"wave_numsamples":20,"wave_samples":[1457,1454,1454,1457,1456,1455,1456,1458,1457,1455,1456,1458,1457,1455,1457,1457,1458,1455,1456,1457],"wave_significantheight":4},"metadata":{"time":"2019-05-30T01:54:56.783020437Z","frequency":904.3,"modulation":"LORA","data_rate":"SF8BW125","airtime":195072000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_009","gtw_trusted":true,"timestamp":3680206460,"time":"2019-05-30T01:54:56.639541639Z","channel":2,"rssi":-119,"snr":-0.25,"rf_chain":0,"latitude":32.063454,"longitude":-81.205536,"altitude":13}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_samples
+qos =  0
+payload =  [1457,1454,1454,1457,1456,1455,1456,1458,1457,1455,1456,1458,1457,1455,1457,1457,1458,1455,1456,1457]
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/event
+qos =  0
+payload =  "multisample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_interval
+qos =  0
+payload =  173
+---
+---
+topic =  coastal_environment/devices/gt-envsense-025/up/wave_significantheight
+qos =  0
+payload =  4
+---
+---
+topic =  coastal_environment/devices/gt-envsense-001/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-001","hardware_serial":"0004A30B0022E12E","port":12,"counter":3902,"payload_raw":"ApL6AwvFBAspKFc=","payload_fields":{"event":"varsample","poweroncount":37626,"pressure":10327,"temperature":2857,"ultrasonic_distance":3013},"metadata":{"time":"2019-05-30T01:55:33.329726246Z","frequency":904.9,"modulation":"LORA","data_rate":"SF7BW125","airtime":61696000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_006","gtw_trusted":true,"timestamp":2904524316,"time":"2019-05-30T01:56:27.401502401Z","channel":5,"rssi":-84,"snr":8.75,"rf_chain":1,"latitude":31.935974,"longitude":-81.15498,"altitude":54}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-001/up/ultrasonic_distance
+qos =  0
+payload =  3013
+---
+---
+topic =  coastal_environment/devices/gt-envsense-001/up/temperature
+qos =  0
+payload =  2857
+---
+---
+topic =  coastal_environment/devices/gt-envsense-001/up/pressure
+qos =  0
+payload =  10327
+---
+---
+topic =  coastal_environment/devices/gt-envsense-001/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-001/up/poweroncount
+qos =  0
+payload =  37626
+---
+---
+topic =  coastal_environment/devices/gt-envsense-015/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-015","hardware_serial":"0004A30B0028AD8D","port":12,"counter":7320,"payload_raw":"AhhBAw0J","payload_fields":{"event":"varsample","poweroncount":6209,"ultrasonic_distance":3337},"metadata":{"time":"2019-05-30T01:55:58.043956257Z","frequency":904.9,"modulation":"LORA","data_rate":"SF7BW125","airtime":51456000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_012","gtw_trusted":true,"timestamp":620803764,"time":"2019-05-30T01:55:57.914604914Z","channel":5,"rssi":-99,"snr":9.25,"rf_chain":1,"latitude":31.930946,"longitude":-81.08481,"altitude":17}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-015/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-015/up/poweroncount
+qos =  0
+payload =  6209
+---
+---
+topic =  coastal_environment/devices/gt-envsense-015/up/ultrasonic_distance
+qos =  0
+payload =  3337
+---
+---
+topic =  coastal_environment/devices/gt-envsense-032/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-032","hardware_serial":"0004A30B0028B2E6","port":12,"counter":2233,"payload_raw":"AgS7AwvK","payload_fields":{"event":"varsample","poweroncount":1211,"ultrasonic_distance":3018},"metadata":{"time":"2019-05-30T01:56:04.808865113Z","frequency":903.9,"modulation":"LORA","data_rate":"SF10BW125","airtime":329728000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_002","gtw_trusted":true,"timestamp":4203903148,"time":"2019-05-30T01:56:03.747397747Z","channel":0,"rssi":-119,"snr":-1.25,"rf_chain":0,"latitude":31.989407,"longitude":-81.022804,"altitude":7}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-032/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-032/up/poweroncount
+qos =  0
+payload =  1211
+---
+---
+topic =  coastal_environment/devices/gt-envsense-032/up/ultrasonic_distance
+qos =  0
+payload =  3018
+---
+---
+topic =  coastal_environment/devices/gt-envsense-035/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-035","hardware_serial":"0004A30B002837A9","port":12,"counter":10051,"payload_raw":"AiEXAwpJ","payload_fields":{"event":"varsample","poweroncount":8471,"ultrasonic_distance":2633},"metadata":{"time":"2019-05-30T01:56:10.337734642Z","frequency":904.5,"modulation":"LORA","data_rate":"SF7BW125","airtime":51456000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_003","gtw_trusted":true,"timestamp":557147323,"time":"2019-05-30T01:56:10.272555272Z","channel":3,"rssi":-114,"snr":2,"rf_chain":0,"latitude":32.00777,"longitude":-80.84515,"altitude":12}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-035/up/poweroncount
+qos =  0
+payload =  8471
+---
+---
+topic =  coastal_environment/devices/gt-envsense-035/up/ultrasonic_distance
+qos =  0
+payload =  2633
+---
+---
+topic =  coastal_environment/devices/gt-envsense-035/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-023/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-023","hardware_serial":"0004A30B002855F5","port":12,"counter":895,"payload_raw":"AgJTAwjU","payload_fields":{"event":"varsample","poweroncount":595,"ultrasonic_distance":2260},"metadata":{"time":"2019-05-30T01:56:15.919024385Z","frequency":904.9,"modulation":"LORA","data_rate":"SF9BW125","airtime":185344000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_004","gtw_trusted":true,"timestamp":770312628,"time":"2019-05-30T02:01:49Z","channel":5,"rssi":-119,"snr":-7.75,"rf_chain":1,"latitude":32.168133,"longitude":-81.210754,"location_source":"registry"}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-023/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-023/up/poweroncount
+qos =  0
+payload =  595
+---
+---
+topic =  coastal_environment/devices/gt-envsense-023/up/ultrasonic_distance
+qos =  0
+payload =  2260
+---
+---
+topic =  coastal_environment/devices/gt-envsense-008/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-008","hardware_serial":"0004A30B0021BA7D","port":12,"counter":336,"payload_raw":"AgFPAwgl","payload_fields":{"event":"varsample","poweroncount":335,"ultrasonic_distance":2085},"metadata":{"time":"2019-05-30T01:56:20.775143611Z","frequency":904.5,"modulation":"LORA","data_rate":"SF7BW125","airtime":51456000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_009","gtw_trusted":true,"timestamp":3764262091,"time":"2019-05-30T01:56:20.695246695Z","channel":3,"rssi":-118,"snr":2,"rf_chain":0,"latitude":32.06348,"longitude":-81.20553,"altitude":10}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-008/up/ultrasonic_distance
+qos =  0
+payload =  2085
+---
+---
+topic =  coastal_environment/devices/gt-envsense-008/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-008/up/poweroncount
+qos =  0
+payload =  335
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-022","hardware_serial":"0004A30B0028C926","port":12,"counter":12,"payload_raw":"Ag2IAycPBQAUAK4AAA==","payload_fields":{"event":"varsample","poweroncount":3464,"ultrasonic_distance":9999,"wave_interval":174,"wave_numsamples":20,"wave_significantheight":0},"metadata":{"time":"2019-05-30T01:56:30.427743212Z","frequency":905.3,"modulation":"LORA","data_rate":"SF7BW125","airtime":61696000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_bryan_002","gtw_trusted":true,"timestamp":835810940,"time":"2019-05-30T02:00:27Z","channel":7,"rssi":-61,"snr":9.25,"rf_chain":1,"latitude":31.789827,"longitude":-81.20243,"location_source":"registry"},{"gtw_id":"gatech_bryan_001","gtw_trusted":true,"timestamp":2129346068,"time":"2019-05-30T01:56:30.368629368Z","channel":7,"rssi":-33,"snr":9.25,"rf_chain":1,"latitude":31.791645,"longitude":-81.20247,"altitude":-8}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_significantheight
+qos =  0
+payload =  0
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/poweroncount
+qos =  0
+payload =  3464
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/ultrasonic_distance
+qos =  0
+payload =  9999
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_interval
+qos =  0
+payload =  174
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-022","hardware_serial":"0004A30B0028C926","port":11,"counter":13,"payload_raw":"FACuAAAnDycPJw8nDycPJw8nDycPJw8nDycPJw8nDycPJw8nDycPJw8nDycP","payload_fields":{"event":"multisample","wave_interval":174,"wave_numsamples":20,"wave_samples":[9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999],"wave_significantheight":0},"metadata":{"time":"2019-05-30T01:56:32.824134189Z","frequency":903.9,"modulation":"LORA","data_rate":"SF7BW125","airtime":112896000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_bryan_002","gtw_trusted":true,"timestamp":838207963,"time":"2019-05-30T02:00:29Z","channel":0,"rssi":-66,"snr":9.75,"rf_chain":0,"latitude":31.789827,"longitude":-81.20243,"location_source":"registry"},{"gtw_id":"gatech_bryan_001","gtw_trusted":true,"timestamp":2131743091,"time":"2019-05-30T01:56:32.765650441Z","channel":0,"rssi":-39,"snr":10.25,"rf_chain":0,"latitude":31.791645,"longitude":-81.20247,"altitude":-8}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_samples
+qos =  0
+payload =  [9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999,9999]
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/event
+qos =  0
+payload =  "multisample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_interval
+qos =  0
+payload =  174
+---
+---
+topic =  coastal_environment/devices/gt-envsense-022/up/wave_significantheight
+qos =  0
+payload =  0
+---
+---
+topic =  coastal_environment/devices/gt-envsense-028/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-028","hardware_serial":"0004A30B002858FB","port":12,"counter":1379,"payload_raw":"Ah59Awgy","payload_fields":{"event":"varsample","poweroncount":7805,"ultrasonic_distance":2098},"metadata":{"time":"2019-05-30T01:57:14.157556154Z","frequency":905.1,"modulation":"LORA","data_rate":"SF7BW125","airtime":51456000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_sapelo_001","gtw_trusted":true,"timestamp":3202075364,"time":"2019-05-30T01:57:36Z","channel":6,"rssi":-72,"snr":10,"rf_chain":1,"latitude":31.417751,"longitude":-81.29499,"location_source":"registry"}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-028/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-028/up/poweroncount
+qos =  0
+payload =  7805
+---
+---
+topic =  coastal_environment/devices/gt-envsense-028/up/ultrasonic_distance
+qos =  0
+payload =  2098
+---
+---
+topic =  coastal_environment/devices/gt-envsense-009/events/activations
+qos =  0
+payload =  {"app_eui":"70B3D57ED000F918","dev_eui":"0004A30B0021644C","dev_addr":"26022B9D","metadata":{"time":"2019-05-30T01:57:20.679458061Z","frequency":903.9,"modulation":"LORA","data_rate":"SF10BW125","airtime":206848000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_010","timestamp":2938186324,"time":"2019-05-30T01:57:20.527977791Z","channel":0,"rssi":-123,"snr":-13,"rf_chain":0}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-005/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-005","hardware_serial":"0004A30B002141F5","port":12,"counter":909,"payload_raw":"AgN9AxRv","payload_fields":{"event":"varsample","poweroncount":893,"ultrasonic_distance":5231},"metadata":{"time":"2019-05-30T01:57:24.659028918Z","frequency":904.1,"modulation":"LORA","data_rate":"SF8BW125","airtime":102912000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_008","gtw_trusted":true,"timestamp":3071286252,"time":"2019-05-30T01:57:16Z","channel":1,"rssi":-118,"snr":-0.5,"rf_chain":0}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-005/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-005/up/poweroncount
+qos =  0
+payload =  893
+---
+---
+topic =  coastal_environment/devices/gt-envsense-005/up/ultrasonic_distance
+qos =  0
+payload =  5231
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-024","hardware_serial":"0004A30B0028C58B","port":12,"counter":477,"payload_raw":"AglgAxUo","payload_fields":{"event":"varsample","poweroncount":2400,"ultrasonic_distance":5416},"metadata":{"time":"2019-05-30T01:57:28.537559271Z","frequency":905.3,"modulation":"LORA","data_rate":"SF10BW125","airtime":329728000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_002","gtw_trusted":true,"timestamp":4287637164,"time":"2019-05-30T01:57:28.481516481Z","channel":7,"rssi":-118,"snr":-4.5,"rf_chain":1,"latitude":31.989405,"longitude":-81.02276,"altitude":2}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/poweroncount
+qos =  0
+payload =  2400
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/ultrasonic_distance
+qos =  0
+payload =  5416
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-024","hardware_serial":"0004A30B0028C58B","port":12,"counter":478,"payload_raw":"BAuAJ48=","payload_fields":{"event":"varsample","pressure":10127,"temperature":2944},"metadata":{"time":"2019-05-30T01:57:31.142882681Z","frequency":905.1,"modulation":"LORA","data_rate":"SF10BW125","airtime":329728000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_002","gtw_trusted":true,"timestamp":4290239396,"time":"2019-05-30T01:57:31.083751083Z","channel":6,"rssi":-119,"snr":-6.75,"rf_chain":1,"latitude":31.989405,"longitude":-81.02276,"altitude":2}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/temperature
+qos =  0
+payload =  2944
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/pressure
+qos =  0
+payload =  10127
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-041","hardware_serial":"0004A30B00285809","port":12,"counter":8747,"payload_raw":"AhgsAxFHBQAUAK0Kiw==","payload_fields":{"event":"varsample","poweroncount":6188,"ultrasonic_distance":4423,"wave_interval":173,"wave_numsamples":20,"wave_significantheight":2699},"metadata":{"time":"2019-05-30T01:57:31.576507664Z","frequency":904.5,"modulation":"LORA","data_rate":"SF7BW125","airtime":61696000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_012","gtw_trusted":true,"timestamp":714189819,"time":"2019-05-30T01:57:31.3007523Z","channel":3,"rssi":-93,"snr":10,"rf_chain":0,"latitude":31.930962,"longitude":-81.08482,"altitude":18}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_significantheight
+qos =  0
+payload =  2699
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/poweroncount
+qos =  0
+payload =  6188
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/ultrasonic_distance
+qos =  0
+payload =  4423
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_interval
+qos =  0
+payload =  173
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-024","hardware_serial":"0004A30B0028C58B","port":12,"counter":479,"payload_raw":"BQAUAK0ABw==","payload_fields":{"event":"varsample","wave_interval":173,"wave_numsamples":20,"wave_significantheight":7},"metadata":{"time":"2019-05-30T01:57:33.750624771Z","frequency":904.3,"modulation":"LORA","data_rate":"SF10BW125","airtime":370688000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_002","gtw_trusted":true,"timestamp":4292842548,"time":"2019-05-30T01:57:33.686905686Z","channel":2,"rssi":-119,"snr":-7.25,"rf_chain":0,"latitude":31.989405,"longitude":-81.02276,"altitude":2}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_interval
+qos =  0
+payload =  173
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_significantheight
+qos =  0
+payload =  7
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/event
+qos =  0
+payload =  "varsample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-041","hardware_serial":"0004A30B00285809","port":11,"counter":8748,"payload_raw":"FACtCosQsRCwEKMQqBCtEKoQsxCiEK0QsxC4EKwcxRCyEKcQqhCmEK8QqhCu","payload_fields":{"event":"multisample","wave_interval":173,"wave_numsamples":20,"wave_samples":[4273,4272,4259,4264,4269,4266,4275,4258,4269,4275,4280,4268,7365,4274,4263,4266,4262,4271,4266,4270],"wave_significantheight":2699},"metadata":{"time":"2019-05-30T01:57:33.765727665Z","frequency":904.3,"modulation":"LORA","data_rate":"SF7BW125","airtime":112896000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_012","gtw_trusted":true,"timestamp":716575627,"time":"2019-05-30T01:57:33.686562686Z","channel":2,"rssi":-95,"snr":7.5,"rf_chain":0,"latitude":31.930962,"longitude":-81.08482,"altitude":18}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_samples
+qos =  0
+payload =  [4273,4272,4259,4264,4269,4266,4275,4258,4269,4275,4280,4268,7365,4274,4263,4266,4262,4271,4266,4270]
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/event
+qos =  0
+payload =  "multisample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_numsamples
+qos =  0
+payload =  20
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_interval
+qos =  0
+payload =  173
+---
+---
+topic =  coastal_environment/devices/gt-envsense-041/up/wave_significantheight
+qos =  0
+payload =  2699
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-024","hardware_serial":"0004A30B0028C58B","port":11,"counter":480,"payload_raw":"AQCtAAcVJw==","payload_fields":{"event":"multisample","wave_interval":173,"wave_numsamples":1,"wave_samples":[5415],"wave_significantheight":7},"metadata":{"time":"2019-05-30T01:57:36.354622738Z","frequency":904.7,"modulation":"LORA","data_rate":"SF10BW125","airtime":370688000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_002","gtw_trusted":true,"timestamp":483156,"time":"2019-05-30T01:57:36.294814294Z","channel":4,"rssi":-119,"snr":-4,"rf_chain":1,"latitude":31.989405,"longitude":-81.02276,"altitude":2}]}}
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_significantheight
+qos =  0
+payload =  7
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_samples
+qos =  0
+payload =  [5415]
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/event
+qos =  0
+payload =  "multisample"
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_numsamples
+qos =  0
+payload =  1
+---
+---
+topic =  coastal_environment/devices/gt-envsense-024/up/wave_interval
+qos =  0
+payload =  173
+---
+---
+topic =  coastal_environment/devices/gt-envsense-037/up
+qos =  0
+payload =  {"app_id":"coastal_environment","dev_id":"gt-envsense-037","hardware_serial":"0004A30B00287452","port":12,"counter":3901,"payload_raw":"AhzHAw1B","payload_fields":{"event":"varsample","poweroncount":7367,"ultrasonic_distance":3393},"metadata":{"time":"2019-05-30T01:57:39.959874553Z","frequency":903.9,"modulation":"LORA","data_rate":"SF7BW125","airtime":51456000,"coding_rate":"4/5","gateways":[{"gtw_id":"gatech_chatham_010","gtw_trusted":true,"timestamp":2957547779,"time":"2019-05-30T01:57:39.889458334Z","channel":0,"rssi":-114,"snr":-3.75,"rf_chain":0,"latitude":32.03368,"longitude":-80.960556,"altitude":48},{"gtw_id":"gatech_chatham_003","gtw_trusted":true,"timestamp":646764075,"time":"2019-05-30T01:57:39.889441185Z","channel":0,"rssi":-109,"snr":2.75,"rf_chain":0,"latitude":32.00778,"longitude":-80.845146,"altitude":8}]}}

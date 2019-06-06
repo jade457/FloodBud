@@ -1,27 +1,7 @@
-<!hi
-
-			function getColor(d) { 
-					return d  12 ? '#800026' :
-						   d  11  ? '#BD0026' :
-						   d  10  ? '#E31A1C' :
-						   d  9  ? '#FC4E2A' :
-						   d  8   ? '#FD8D3C' :
-						   d  7   ? '#FEB24C' :
-						   d  6   ? '#FED976' :
-									  '#FFEDA0';
-				}
-			
-			
-			
-			
-			
->
-
-
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
-        <title>Testing</title>
+        <title>CDS dashboard</title>
         
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
 		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -35,13 +15,13 @@
 		<script src="https://d3js.org/d3.v4.min.js"></script>
         
 	<style>
-		#mapid {  width: 800px; height: 600px; }
-	</style> 
+		#mapid { width: 800px; height: 600px; }
+	</style>
 	   
     </head>
     <body>
         
-        <h1>Map!</h1>
+        <h1>Our dashboard (beta)</h1>
         
         <div id="mapid"></div>
       
@@ -93,30 +73,35 @@
 					
 				});
 				
-					
+				function getColor(d) { 
+					return d > 12 ? '#800026' :
+						   d > 11  ? '#BD0026' :
+						   d > 10  ? '#E31A1C' :
+						   d > 9  ? '#FC4E2A' :
+						   d > 8   ? '#FD8D3C' :
+						   d > 7   ? '#FEB24C' :
+						   d > 6   ? '#FED976' :
+									  '#FFEDA0';
+				}	
 				
 				function normalize(d) { 
-				
+					console.log(d)
 					var max = d3.max(values); 
 					var min = d3.min(values);
 					var range = max-min; 
-					
-					return (d-min)/range; 
+					return 
 						
-				}
+						 (d-min)/range; 
 				
-				
-				function getColor(d) { 
-					var norm = normalize(d)
-					return 'rgb('+ parseInt(255*norm)+',0,'+ parseInt(255*(1-norm) )+')' 
 				}
 				
 				arr.forEach(function(d) { 
+					console.log(normalize(d.peak_stage))
 					var circle = L.circle( [ d.latitude_dd, d.longitide_dd] , {
-						color: getColor(d.peak_stage),
-						fillColor: getColor(d.peak_stage), 
-						fillOpacity: 0.5,
-						radius: normalize(d.peak_stage, values )*800 + 20
+					color: getColor(d.peak_stage),
+					fillColor: getColor(d.peak_stage), 
+					fillOpacity: 0.5,
+					radius: 500
 					})  ;
 					objects.push(circle)  
 					circle.addTo(mymap)
