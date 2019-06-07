@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        var w = 950;
+        var h = 550;
+        var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+
+
+        console.log("hel");
+        d3.csv("sensor_data_full.csv", function(data){
+          var dict = {};
+          var data_mod = [];
+
+          //POPULATING DICTIONARY WITH DATA
+          data.forEach(function(d) {
+            //creating dictionary
+            trueValue = (+d.sensorElevation) +  (+d.value)
+            if (d.measurementName === "Water Level"){
+              if (!(d.sensorName in dict)){
+                dict[d.sensorName] = {lat: +d.sensorLat,
+                                      long: +d.sensorLng,
+                                 values: [trueValue]}
+              }else{
+                dict[d.sensorName]["values"].push(trueValue);
+              }
+            }
+          });
+          console.log(dict);
+          //data_mod
+          for (var key in dict){
+            data_mod.push({sensorName: key,
+                                lat: dict[key].lat,
+                                long: dict[key].long,
+                                values: dict[key]["values"]});
+          }
+          //console.log(data_mod);
+
+          //scale lat and long to screen dimensions - temporary
+          var latScale = d3.scale.linear().domain([31.41796, 32.172647]).range([0, 700]);
+          var longScale = d3.scale.linear().domain([-81.296069, -80.850964]).range([0, 700]);
+
+
+          //label circles with text
+          svg.selectAll("text")
+              .data(data_mod)
+              .enter()
+              .append("text")
+              .text(function(d){
+                return d.sensorName;
+              })
+              .attr("x", function(d){return d.lat - 8;})
+              .attr("y", function(d){return d.long;})
+              .style("font-family", "sans-serif")
+              .style("font-size", 11);
+
+
+          //create circle for each data point
+          var circles = svg.selectAll("circle")
+                           .data(data_mod)
+                           .enter()
+                           .append("circle");
+
+          circles.attr("cx", function(d){
+            return latScale(d.lat);
+          })
+          .attr("cy", function(d){
+            return longScale(d.long);
+          })
+          .attr("r", 10)
+          .style("stroke", "gray")
+          .style("fill", "white")
+          .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+          .on("mouseout", function(){d3.select(this).style("fill", "white");})
+          .on("mousedown", animate);
+
+          var i = 0;
+          setInterval(function(){
+
+            var colorScale = d3.scale.linear().domain([-2, 0]).range(['#ddd', 'red']);
+            //var colors = ["red", "blue", "yellow"];
+            circles.style("fill", function(d){
+              return colorScale(d.values[i]);
+            })
+            i = i+1;
+          }, 1000);
+
+          function animate() {
+            d3.select(this).transition().duration(function(d){
+              return 100*d.value;
+            })
+            .attr("r", 4)
+            .transition().delay(function(d){
+              return 100*d.value;
+            })
+            .attr("r", 15);
+          };
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+      //reading a csv file
+      //json file / mapping
+      //bind mulitple datasets to the same object?
+        </script>
+
+
+
+    </body>
+
+</html>
