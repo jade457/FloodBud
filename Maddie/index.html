@@ -1,18 +1,16 @@
 <!hi
-
-			function getColor(d) { 
-					return d  12 ? '#800026' :
-						   d  11  ? '#BD0026' :
-						   d  10  ? '#E31A1C' :
-						   d  9  ? '#FC4E2A' :
-						   d  8   ? '#FD8D3C' :
-						   d  7   ? '#FEB24C' :
-						   d  6   ? '#FED976' :
-									  '#FFEDA0';
-				}
 			
 			
-			
+			arr.forEach(function(d) { 
+					var circle = L.circle( [ d.latitude_dd, d.longitide_dd] , {
+						color: getColor(d.peak_stage),
+						fillColor: getColor(d.peak_stage), 
+						fillOpacity: 0.5,
+						radius: normalize(d.peak_stage, values )*800 + 20
+					})  ;
+					objects.push([circle, d] )  
+					circle.addTo(mMap)
+				}); 
 			
 			
 >
@@ -36,109 +34,293 @@
         
 	<style>
 		#mapid {  width: 800px; height: 600px; }
+		#mapid2 {  width: 800px; height: 600px; }
 	</style> 
 	   
     </head>
     <body>
         
-        <h1>Map!</h1>
+        <h1>Matthew:</h1>
         
         <div id="mapid"></div>
+        
+        <h2>Irma:</h2>
+        
+         <div id="mapid2"></div>
       
     	<svg></svg>
         
         <script> 
         	
-        	var mymap = L.map('mapid').setView([32.0809, -81.0912], 11);
+        	// map for matthew 
+        	
+        	var mMap = L.map('mapid').setView([32.0809, -81.0912], 11);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 			maxZoom: 18,
 			id: 'mapbox.streets',
 			accessToken: 'pk.eyJ1IjoibWNhcmxpbmk2IiwiYSI6ImNqd2h3ZW93cDAxaWo0M3A5bHFsb2l0NXIifQ.qiehHoOFMMN0VTrTg3_nDQ'
-			}).addTo(mymap);
-        	
-			var svgWidth = 600 , svgHeight = 500; 
+			}).addTo(mMap);
+			
+			// map for irma 
+			
+			var iMap = L.map('mapid2').setView([32.0809, -81.0912], 11);
 
-			var svg = d3.select('svg')
-				.attr('width', svgWidth)
-				.attr('height', svgHeight)
-				.attr('class', 'svg-container'); 
-	
-			var line = svg.append('line')
-				.attr('x1', 100)
-				.attr('x2', 500)
-				.attr('y1', 50)
-				.attr('y2', 50) 
-				.attr('stroke', 'blue')
-				.attr('stroke-width', 5)
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+			maxZoom: 18,
+			id: 'mapbox.streets',
+			accessToken: 'pk.eyJ1IjoibWNhcmxpbmk2IiwiYSI6ImNqd2h3ZW93cDAxaWo0M3A5bHFsb2l0NXIifQ.qiehHoOFMMN0VTrTg3_nDQ'
+			}).addTo(iMap);
+			
 			
 			var arr = [] 
 			var objects = []
-			var values = []
+			var values = []	
 			
 			
+			// read and write matthew 
 			d3.csv("Matthew_FilteredPeaks.csv", function(data) {
-			 
 			 	
 			 	data.forEach(function(d){ 
 					arr.push(  
 						
-						{'latitude_dd' : d.latitude_dd, 
-						'longitide_dd' : d.longitude_dd, 
-						'peak_stage' : +d.peak_stage } 
-						
+						{'latitude_dd' : +d.latitude_dd, 
+						'longitide_dd' : +d.longitude_dd, 
+						'difference' : +d.difference,
+						'peak_stage' : +d.peak_stage, 
+						'isAbove' : +d.isAbove, 
+						'description': d.description, 
+						'site_id': d.site_id } 
 						) 
-					values.push(+d.peak_stage)
+					values.push(+d.difference)
+					
+					//console.log(d.difference)
 					
 				});
 				
-					
-				
 				function normalize(d) { 
-				
+					
+					
+					
 					var max = d3.max(values); 
 					var min = d3.min(values);
 					var range = max-min; 
 					
+					console.log([d, max,min,range])
+					
+					//return Math.sqrt((d-min)/range); 
 					return (d-min)/range; 
 						
 				}
 				
-				
+				// for color gradient 
 				function getColor(d) { 
 					var norm = normalize(d)
 					return 'rgb('+ parseInt(255*norm)+',0,'+ parseInt(255*(1-norm) )+')' 
 				}
 				
+				// for above or below 
+				function pickColor(boo){ 
+					if (boo==1){ 
+						return 'red'
+					}
+					else{ 
+						return 'blue'
+					}
+				
+				}
+				
+				// calculate the triangles 
+				function makeTriangle(loc, isAbove, normed) { 
+					var latlngs = []
+					console.log(normed)
+					if (isAbove==1) { 
+						latlngs = [ [ loc[0] , loc[1]+(0.01*normed+0.01) ]  , [loc[0] , loc[1]-(0.01*normed+0.01) ] , [loc[0]+(0.01*normed+0.01) , loc[1] ] ];
+						} 
+					else { 
+						latlngs = [ [ loc[0] , loc[1]+(0.01*normed+0.01) ]  , [loc[0] , loc[1]-(0.01*normed+0.01) ] , [loc[0] -(0.01*normed+0.01) , loc[1] ] ];
+						}
+					return latlngs; 
+					}
+				
+				// draw the triangles 
 				arr.forEach(function(d) { 
-					var circle = L.circle( [ d.latitude_dd, d.longitide_dd] , {
-						color: getColor(d.peak_stage),
-						fillColor: getColor(d.peak_stage), 
-						fillOpacity: 0.5,
-						radius: normalize(d.peak_stage, values )*800 + 20
-					})  ;
-					objects.push(circle)  
-					circle.addTo(mymap)
+				
+					if (d.site_id == '17824'){ 
+					
+						var circle = L.circle( [ d.latitude_dd, d.longitide_dd] , {
+							color: 'black',
+							fillColor: 'black', 
+							fillOpacity: 1,
+							radius: 400
+						})  ;
+						circle.addTo(mMap)
+						objects.push([circle, d]) 
+					}
+					else { 
+						var tri = L.polygon(makeTriangle([d.latitude_dd, d.longitide_dd], d.isAbove, normalize(d.difference)), {color: pickColor(d.isAbove)})
+						tri.addTo(mMap)
+						objects.push([tri, d]) 
+					} 
+					
+					
+					
 				}); 
 				
+				objects.forEach(function(obj) { 
+				
+					//obj[0].bindPopup('ID: '+obj[1].site_id); 
+					obj[0].on('mouseover', function (e) {
+						//this.openPopup();
+						info.update(obj[1]);
+					});
+					obj[0].on('mouseout', function (e) {
+						//this.closePopup();
+						info.update();
+					});
+				
+				}); 	
+				
+				var info = L.control(); 
+
+				info.onAdd = function (mMap) {
+					this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+					this.update();
+					return this._div;
+				};
+ 
+				info.update = function (sen) {
+					this._div.innerHTML = '<h4>Hurricane Water Level Sensors</h4>' +  (sen ?
+						'<b>' + 'Fort. Pulaski: 9.12 ft' + '</b><br />' + '<b>' + sen.description+ ': ' +sen.peak_stage+' ft</b>'
+						: 'Legend');  
+				}; 
+
+				info.addTo(mMap);
 				
 			}); 
 			
 			
 			
+			// read and write irma 
 			
+			var i_arr = [] 
+			var i_objects = []
+			var i_values = []
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			 
+			d3.csv("Irma_FilteredPeaks.csv", function(dataI) {
+			 	
+			 	dataI.forEach(function(dt){ 
+					i_arr.push(  
+						
+						{'latitude_dd' : +dt.latitude_dd, 
+						'longitide_dd' : +dt.longitude_dd, 
+						'difference' : +dt.difference,
+						'peak_stage' : +dt.peak_stage, 
+						'isAbove' : +dt.isAbove, 
+						'description': dt.description, 
+						'site_id': dt.site_id } 
+						) 
+					i_values.push(+dt.difference)
+					console.log(dt.site_id)
+					console.log(dt.difference)
+					
+				});
+				
+				function normalize(dt) { 
+					
+					var max = d3.max(i_values); 
+					var min = d3.min(i_values);
+					var range = max-min; 
+					
+					return (dt-min)/range; 
+						
+				}
+				
+				// for color gradient 
+				function getColor(dt) { 
+					var norm = normalize(d)
+					return 'rgb('+ parseInt(255*norm)+',0,'+ parseInt(255*(1-norm) )+')' 
+				}
+				
+				// for above or below 
+				function pickColor(boo){ 
+					if (boo==1){ 
+						return 'red'
+					}
+					else{ 
+						return 'blue'
+					}
+				
+				}
+				
+				// calculate the triangles 
+				function makeTriangle(loc, isAbove, normed) { 
+					var latlngs = []
+					if (isAbove==1) { 
+						latlngs = [ [ loc[0] , loc[1]+(0.01*normed+0.01) ]  , [loc[0] , loc[1]-(0.01*normed+0.01) ] , [loc[0]+(0.01*normed+0.01) , loc[1] ] ];
+						} 
+					else { 
+						latlngs = [ [ loc[0] , loc[1]+(0.01*normed+0.01) ]  , [loc[0] , loc[1]-(0.01*normed+0.01) ] , [loc[0] -(0.01*normed+0.01) , loc[1] ] ];
+						}
+					return latlngs; 
+					}
+				
+				// draw the triangles 
+				i_arr.forEach(function(dt) { 
+				
+					if (dt.site_id == '17824'){ 
+					
+						var circle = L.circle( [ dt.latitude_dd, dt.longitide_dd] , {
+							color: 'black',
+							fillColor: 'black', 
+							fillOpacity: 1,
+							radius: 400
+						})  ;
+						circle.addTo(iMap)
+						i_objects.push([circle, dt]) 
+					}
+					else { 
+						var tri = L.polygon(makeTriangle([dt.latitude_dd, dt.longitide_dd], dt.isAbove, normalize(dt.difference)), {color: pickColor(dt.isAbove)})
+						tri.addTo(iMap)
+						i_objects.push([tri, dt]) 
+					} 
+					
+				}); 
+				
+				
+				i_objects.forEach(function(obj) { 
+				
+					//obj[0].bindPopup('ID: '+obj[1].site_id); 
+					obj[0].on('mouseover', function (e) {
+						//this.openPopup();
+						info.update(obj[1]);
+					});
+					obj[0].on('mouseout', function (e) {
+						//this.closePopup();
+						info.update();
+					});
+				
+				}); 	
+				
+				var info = L.control(); 
+
+				info.onAdd = function (iMap) {
+					this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+					this.update();
+					return this._div;
+				};
+ 
+				info.update = function (sen) {
+					this._div.innerHTML = '<h4>Hurricane Water Level Sensors</h4>' +  (sen ?
+						'<b>' + 'Fort. Pulaski: 8.53 ft' + '</b><br />' + '<b>' + sen.description+ ': ' +sen.peak_stage+' ft</b>'
+						: 'Legend');  
+				}; 
+
+				info.addTo(iMap);
+				
+			});
 			
 			
 
