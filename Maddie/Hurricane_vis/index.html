@@ -33,28 +33,35 @@
 		<script src="https://d3js.org/d3.v4.min.js"></script>
         
 	<style>
-		#mapid {  width: 800px; height: 600px; }
-		#mapid2 {  width: 800px; height: 600px; }
+		#wrapper {
+  			display: flex;
+		}
+		
+		#mapid {  width: 700px; height: 600px; flex: 0 0 45%; margin:20px 20px 20px 20px;}
+		#mapid2 {  width: 700px; height: 600px; flex: 0 0 45%; margin:20px 20px 20px 20px;}
+
 	</style> 
 	   
     </head>
     <body>
         
-        <h1>Matthew:</h1>
+        <div id="wrapper"> 
+    
+			<div id="mapid"></div>
+		
+			
+		
+			 <div id="mapid2"></div>
+	  
+			<svg></svg>
         
-        <div id="mapid"></div>
-        
-        <h2>Irma:</h2>
-        
-         <div id="mapid2"></div>
-      
-    	<svg></svg>
+        </div>
         
         <script> 
         	
         	// map for matthew 
         	
-        	var mMap = L.map('mapid').setView([32.0809, -81.0912], 11);
+        	var mMap = L.map('mapid').setView([32.00807596, -81.01524353], 11);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -65,7 +72,7 @@
 			
 			// map for irma 
 			
-			var iMap = L.map('mapid2').setView([32.0809, -81.0912], 11);
+			var iMap = L.map('mapid2').setView([32.00807596, -81.01524353], 11);
 
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -192,9 +199,9 @@
 				};
  
 				info.update = function (sen) {
-					this._div.innerHTML = '<h4>Hurricane Water Level Sensors</h4>' +  (sen ?
-						'<b>' + 'Fort. Pulaski: 9.12 ft' + '</b><br />' + '<b>' + sen.description+ ': ' +sen.peak_stage+' ft</b>'
-						: 'Legend');  
+					this._div.innerHTML = '<h4>Hurricane Matthew Water Level Sensors</h4>' +  (sen ?
+						'Fort. Pulaski: 9.12 ft' + '<br/>'+ sen.description+ ': ' +sen.peak_stage+' ft'
+						: '<p4>&#9651</p4>'+' : flooding greater than predicted<br><p5>&#9661</p5>'+' : flooding less than predicted<br> Size: magnitude of difference from Ft. Pulaski reading');  
 				}; 
 
 				info.addTo(mMap);
@@ -313,10 +320,10 @@
 				};
  
 				info.update = function (sen) {
-					this._div.innerHTML = '<h4>Hurricane Water Level Sensors</h4>' +  (sen ?
-						'<b>' + 'Fort. Pulaski: 8.53 ft' + '</b><br />' + '<b>' + sen.description+ ': ' +sen.peak_stage+' ft</b>'
-						: 'Legend');  
-				}; 
+					this._div.innerHTML = '<h4>Hurricane Irma Water Level Sensors</h4>' +  (sen ?
+						'Fort. Pulaski: 8.53 ft' + '<br/>'+ sen.description+ ': ' +sen.peak_stage+' ft'
+						: '<p4>&#9651</p4>'+' : flooding greater than predicted<br><p5>&#9661</p5>'+' : flooding less than predicted<br> Size: magnitude of difference from Ft. Pulaski reading');  
+				};  
 
 				info.addTo(iMap);
 				
