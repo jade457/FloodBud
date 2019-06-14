@@ -2,7 +2,6 @@
     <head>
         <link rel="stylesheet" href="index.css">
         <title>CDS dashboard</title>
-        
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
 		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
 		crossorigin=""/>
@@ -13,122 +12,15 @@
 		crossorigin=""></script>
 		
 		<script src="https://d3js.org/d3.v4.min.js"></script>
-        
 	<style>
 		#mapid { width: 800px; height: 600px; }
 	</style>
-	   
     </head>
     <body>
-        
         <h1>Our dashboard (beta)</h1>
-        
         <div id="mapid"></div>
-      
     	<svg></svg>
-        
-        <script> 
-        	
-        	var mymap = L.map('mapid').setView([32.0809, -81.0912], 11);
-
-			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-			maxZoom: 18,
-			id: 'mapbox.streets',
-			accessToken: 'pk.eyJ1IjoibWNhcmxpbmk2IiwiYSI6ImNqd2h3ZW93cDAxaWo0M3A5bHFsb2l0NXIifQ.qiehHoOFMMN0VTrTg3_nDQ'
-			}).addTo(mymap);
-        	
-			var svgWidth = 600 , svgHeight = 500; 
-
-			var svg = d3.select('svg')
-				.attr('width', svgWidth)
-				.attr('height', svgHeight)
-				.attr('class', 'svg-container'); 
-	
-			var line = svg.append('line')
-				.attr('x1', 100)
-				.attr('x2', 500)
-				.attr('y1', 50)
-				.attr('y2', 50) 
-				.attr('stroke', 'blue')
-				.attr('stroke-width', 5)
-			
-			var arr = [] 
-			var objects = []
-			var values = []
-			
-			
-			d3.csv("Matthew_FilteredPeaks.csv", function(data) {
-			 
-			 	
-			 	data.forEach(function(d){ 
-					arr.push(  
-						
-						{'latitude_dd' : d.latitude_dd, 
-						'longitide_dd' : d.longitude_dd, 
-						'peak_stage' : +d.peak_stage } 
-						
-						) 
-					values.push(+d.peak_stage)
-					
-				});
-				
-				function getColor(d) { 
-					return d > 12 ? '#800026' :
-						   d > 11  ? '#BD0026' :
-						   d > 10  ? '#E31A1C' :
-						   d > 9  ? '#FC4E2A' :
-						   d > 8   ? '#FD8D3C' :
-						   d > 7   ? '#FEB24C' :
-						   d > 6   ? '#FED976' :
-									  '#FFEDA0';
-				}	
-				
-				function normalize(d) { 
-					console.log(d)
-					var max = d3.max(values); 
-					var min = d3.min(values);
-					var range = max-min; 
-					return 
-						
-						 (d-min)/range; 
-				
-				}
-				
-				arr.forEach(function(d) { 
-					console.log(normalize(d.peak_stage))
-					var circle = L.circle( [ d.latitude_dd, d.longitide_dd] , {
-					color: getColor(d.peak_stage),
-					fillColor: getColor(d.peak_stage), 
-					fillOpacity: 0.5,
-					radius: 500
-					})  ;
-					objects.push(circle)  
-					circle.addTo(mymap)
-				}); 
-				
-				
-			}); 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			 
-			
-			
-
-        
-        </script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="module" src="index.js"></script>
     </body>
 </html>  
