@@ -24,7 +24,7 @@ get_water_obs_links().then(data => {
   get_obs_for_link(data[0].link).then(console.log);
 })
 get_all_sensor_links().then(data => {
-  //console.log(data);
+  console.log(data);
 })
 d3.csv("sensor_data_full.csv", data => {
   var nested_data = {};
