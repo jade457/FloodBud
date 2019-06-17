@@ -31,6 +31,7 @@
 		crossorigin=""></script>
 		
 		<script src="https://d3js.org/d3.v4.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
 	<style>
 		#wrapper {
@@ -57,7 +58,11 @@
         
         </div>
         
-        <script> 
+        <script type="module"> 
+        import * as scraper from './api_scraper.js';
+
+        scraper.get_water_obs_links().then(console.log);
+        scraper.get_water_obs_links().then(links => {scraper.get_obs_for_link(links[0].link).then(console.log)});
         	
         	// map for matthew 
         	
