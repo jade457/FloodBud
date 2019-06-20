@@ -1,4 +1,4 @@
-import { get_all_sensor_links, get_water_obs_links, get_obs_for_link } from './api_scraper.js';
+import { get_all_sensor_links, get_water_obs_links, get_obs_for_link, get_obs_for_links } from './api_scraper.js';
 var myMap = L.map('mapid').setView([32.0809, -81.0912], 11);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -19,13 +19,23 @@ var arr     = []
 var objects = []
 var values  = []
 
-get_water_obs_links().then(data => {
-  console.log(data);
-  get_obs_for_link(data[0].link).then(console.log);
+get_water_obs_links().then(sensors => {
+  console.log(sensors);
+  get_obs_for_link(sensors[0].link, new Date("April 20 2019")).then(console.log);
+  get_obs_for_links(sensors.map(x => x.link), new Date("April 20 2019")).then(data => {
+    console.log(data);
+  });
 })
-get_all_sensor_links().then(data => {
-  console.log(data);
-})
+
+console.log("Not just me");
+$.ajax({
+  type: "POST",
+  url: "~/test.py",
+  data: { param: "Allo?"}
+}).done(o => {
+  console.log(o);
+});
+
 d3.csv("sensor_data_full.csv", data => {
   var nested_data = {};
 
@@ -46,7 +56,7 @@ d3.csv("sensor_data_full.csv", data => {
         nested_data[d.sensorName].values.push({
           time:  d.timestamp,
           level: +d.value
-        })
+        });
       }
     }
   });
@@ -72,20 +82,20 @@ d3.csv("sensor_data_full.csv", data => {
     s.circle.addTo(myMap);
   })
   var i = 0;
-  setInterval(() => {
-    listed_data.forEach(s => {
-      myMap.removeLayer(s.circle);
-      s.circle = L.circle([s.lat, s.lng],
-      {
-        color:       'blue',
-        fillColor:   'blue',
-        fillOpacity: 0.5,
-        radius:      (s.elevation + s.values[i].level) * 500
-      });
-      s.circle.addTo(myMap);
-    });
-    i++;
-  }, 1000);
+  //setInterval(() => {
+    //listed_data.forEach(s => {
+      //myMap.removeLayer(s.circle);
+      //s.circle = L.circle([s.lat, s.lng],
+      //{
+        //color:       'blue',
+        //fillColor:   'blue',
+        //fillOpacity: 0.5,
+        //radius:      (s.elevation + s.values[i].level) * 500
+      //});
+      //s.circle.addTo(myMap);
+    //});
+    //i++;
+  //}, 1000);
 
   /**
   data.forEach(function(d){ 
