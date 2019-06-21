@@ -101,7 +101,7 @@ def get_obs_for_link(link, start_date = None, end_date = None):
         # No iot next link? Must be the end, return
         return observations
 
-def get_obs_for_links(links, start_date, end_date):
+def get_obs_for_links(links, start_date = None, end_date = None):
     """
     simple wrapper function that takes in a list of links
     """
@@ -112,5 +112,5 @@ if __name__ == "__main__":
     all_links = list(map(lambda thing: thing["link"], get_water_obs_links()))
     start_date = date_parser.parse("April 1 2019")
     end_date = date_parser.parse("April 3 2019")
-    vals = get_obs_for_link(all_links[1], start_date.isoformat() + "Z", end_date.isoformat() + "Z")
-    print(vals)
+    vals = get_obs_for_links(all_links[:3], start_date.isoformat() + "Z", end_date.isoformat() + "Z")
+    print(list(vals))
