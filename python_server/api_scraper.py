@@ -2,7 +2,8 @@ import requests as req
 import dateutil.parser as date_parser
 from pprint import pprint as print
 
-base_url = 'https://api.sealevelsensors.org/v1.0/Things'
+base_url      = 'https://api.sealevelsensors.org/v1.0/Things'
+base_url_noaa = 'https://tidesandcurrents.noaa.gov/api/datagetter'
 
 def get_all_sensor_links():
     """
@@ -67,8 +68,10 @@ def get_obs_for_link(link, start_date = None, end_date = None):
     the important thing is that I ask for a filter
     based on whether start_date / end_date exist
     http://developers.sensorup.com/docs/#query-filter
-    TODO: make the filters not terrible code
     """
+    start_date = date_parser.parse(start_date).isoformat() + "Z" if start_date else None
+    end_date   = date_parser.parse(end_date).isoformat()   + "Z" if end_date   else None
+
     if start_date and end_date:
         filters["$filter"] = "resultTime ge " + start_date + " and resultTime le " + end_date
     elif start_date:
@@ -109,9 +112,24 @@ def get_obs_for_links(links, start_date = None, end_date = None):
     promises_array = map(lambda link: get_obs_for_link(link, start_date, end_date), links)
     return promises_array
 
+def get_ft_pulaski(start_date, end_date):
+    params = {
+        "product":     "predictions",
+        "application": "Georgia_Tech",
+        "datum":       "NAVD",
+        "station":     "8670870",
+        "time_zone":   "GMT",
+        "units":       "metric",
+        "format":      "json"
+    }
+    params["begin_date"] = date_parser.parse(start_date).strftime("%Y%m%d %H:%M")
+    params["end_date"]   = date_parser.parse(end_date).strftime("%Y%m%d %H:%M")
+
+    return req.get(base_url_noaa, params=params).json()["predictions"]
+
+
 if __name__ == "__main__":
-    all_links = list(map(lambda thing: thing["link"], get_water_obs_links()))
-    start_date = date_parser.parse("April 1 2019")
-    end_date = date_parser.parse("April 3 2019")
-    vals = get_obs_for_links(all_links[:3], start_date.isoformat() + "Z", end_date.isoformat() + "Z")
-    print(list(vals))
+    lonks = get_water_obs_links()
+    
+    print(get_obs_for_link(lonks[3]["link"], "April 3 2019", "April 5 2019"))
+    print(get_ft_pulaski("April 3 2019", "April 5 2019"))
