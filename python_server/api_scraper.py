@@ -1,3 +1,8 @@
+"""
+Helper functions to scrape data from the sea level sensors project.
+
+see https://dev.sealevelsensors.org/
+"""
 import requests as req
 import dateutil.parser as date_parser
 from pprint import pprint as print
@@ -7,9 +12,10 @@ base_url_noaa = 'https://tidesandcurrents.noaa.gov/api/datagetter'
 
 def get_sensor_datastreams():
     """
-    Creates a list of all datastream links.
-    Helper function for get_water_obs_links
-    Exported in case anyone wants to use it
+    Creates a list of all sensors with datastream links.
+
+    Returns:
+        sensors (list): a list of 'sensors', each sensor being a dictonary with information on the sensor
     """
     api_response = req.get(base_url_sls).json()
     def create_sensor_obj(sensor):
@@ -25,12 +31,12 @@ def get_sensor_datastreams():
 
 def get_sensors_with_water():
   """
-  Returns a list of links that
-  lead to water sensor observations.
-  These links are for use in get_obs_for_link
+  Creates a list of all sensors with water level observation links.
+
+  Returns:
+      sensors (list): a list of 'sensors', each sensor being a dictonary with information on the sensor
   """
   water_obs_links = []
-  # get all the datastream links
   all_sensor_links = get_sensor_datastreams()
   """
   these links contain all types of observations
@@ -50,27 +56,24 @@ def get_sensors_with_water():
           "link":   only_water['Observations@iot.navigationLink']}
   return list(filter(None, map(get_water_link_from_sensor, all_sensor_links)))
 
-  """
-  for sensor in all_sensor_links:
-      obs_type_list = req.get(sensor["link"]).json()
-      for obs_type in obs_type_list["value"]:
-          if obs_type["name"] == "Water Level":
-              water_obs_links.append({
-                  "name":   sensor["name"],
-                  "desc":   sensor["desc"],
-                  "elev":   sensor["elev"],
-                  "coords": sensor["coords"],
-                  "link":   obs_type['Observations@iot.navigationLink']})
-  return water_obs_links
-  """
-
 def get_obs_for_link(link, start_date = None, end_date = None):
     """
-    given a link, start_date, and end_date,
-    returns all observations for that link
-    between those times
-    start_date and end_date are optional
-    end date is even more optional than start date
+    Gets all observations for a given link
+
+    The observations are sorted by date.
+    The return list has datetime objects inside, which may pose a challenge
+    to json serialization
+
+    This code has only been tested on water observations
+    may need tweaking for other observation types
+
+    Parameters:
+        link       (str):            Datastream link to collect observations from
+        start_date (str) (optional): Date to start  collecting observations from
+        end_date   (str) (optional): Date to finish collecting observations from
+
+    Returns:
+        observations (list): a list of tuples, (observation, date_of_observation)
     """
     is_iot_next_link = "?" in link
     params = {}
@@ -96,7 +99,7 @@ def get_obs_for_link(link, start_date = None, end_date = None):
     if len(response["value"]) == 0:
         return []
     unparsed_observations = response["value"][0]["dataArray"]
-    observations = list(map(lambda x: [x[0], date_parser.parse(x[1])], unparsed_observations))
+    observations = list(map(lambda x: (x[0], date_parser.parse(x[1])), unparsed_observations))
     """
     the response only returns 100 observations
     so we need to get the rest. Luckily it also returns
@@ -120,6 +123,18 @@ def get_obs_for_link(link, start_date = None, end_date = None):
         return observations
 
 def get_ft_pulaski(start_date, end_date):
+    """
+    Gets tide PREDICTIONS from the ft pulaski NOAA sensor
+
+    uses NAVD datum, GMT timezone, and metric units
+
+    Parameters:
+        start_date (str): Date to start  collecting observations from
+        end_date   (str): Date to finish collecting observations from
+
+    Returns:
+        observations (list): a list of dictionaries with information on predictions
+    """
     params = {
         "product":     "predictions",
         "application": "Georgia_Tech",
@@ -141,4 +156,5 @@ def get_ft_pulaski(start_date, end_date):
 if __name__ == "__main__":
     waaata = get_sensors_with_water()
     # aa = get_obs_for_link(waaata[6]["link"], "April 1 2019", "April 3 2019")
-    print(get_ft_pulaski("April 1 2019", "April 3 2019"))
+    # print(aa)
+    print(get_ft_pulaski("April 1 2018", "April 3 2019"))
