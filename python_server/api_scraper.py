@@ -19,6 +19,7 @@ def get_sensor_datastreams():
     """
     api_response = req.get(base_url_sls).json()
     def create_sensor_obj(sensor):
+        """Turns a 'sensor' from the API into a succinct dictionary."""
         location = (req.get(sensor["Locations@iot.navigationLink"])).json()["value"][0]
         coordinates = location["location"]["coordinates"]
         return {
@@ -36,27 +37,27 @@ def get_sensors_with_water():
   Returns:
       sensors (list): a list of 'sensors', each sensor being a dictonary with information on the sensor
   """
-  water_obs_links = []
   all_sensor_links = get_sensor_datastreams()
-  """
-  these links contain all types of observations
-  we need to filter only water level observations
-  """
   def get_water_link_from_sensor(sensor):
-      obs_type_list = req.get(sensor["link"]).json()["value"]
+      """Grabs the water datastream from the sensor if it has one."""
+      # get all the observation types then filter the ones that say "Water Level"
+      obs_type_list   = req.get(sensor["link"]).json()["value"]
       only_water_list = list(filter(lambda obs_type: obs_type["name"] == "Water Level", obs_type_list))
+      # some don't have a water level. Just return in that case
       if len(only_water_list) == 0:
           return
-      only_water = only_water_list[0]
+      # variable naming is not my forte
+      wataaa = only_water_list[0]
       return {
           "name":   sensor["name"],
           "desc":   sensor["desc"],
           "elev":   sensor["elev"],
           "coords": sensor["coords"],
-          "link":   only_water['Observations@iot.navigationLink']}
+          "link":   wataaa['Observations@iot.navigationLink']}
+  # the filter simply removes all the Nones due to sensors that don't have a water level link
   return list(filter(None, map(get_water_link_from_sensor, all_sensor_links)))
 
-def get_obs_for_link(link, start_date = None, end_date = None):
+def get_obs_for_link(link, start_date=None, end_date=None):
     """
     Gets all observations for a given link
 
@@ -75,27 +76,29 @@ def get_obs_for_link(link, start_date = None, end_date = None):
     Returns:
         observations (list): a list of tuples, (observation, date_of_observation)
     """
+    # This program is recursive, and can pass an "iot next link" to itself
+    # this link will have a "?" in it
     is_iot_next_link = "?" in link
     params = {}
+    # an iot next link contains the params, so no need to set them if that's the case
     if not is_iot_next_link:
         params["$select"]       =  "resultTime,result"
         params["$resultFormat"] =  "dataArray"
-    """
-    the next few lines look ugly, but that's just
-    string formatting for the urls in the GET request
-    the important thing is that I ask for a filter
-    based on whether start_date / end_date exist
-    http://developers.sensorup.com/docs/#query-filter
-    """
+
+    if end_date and not start_date:
+        start_date = "April 1 2019"
+
     start_date = date_parser.parse(start_date).isoformat() + "Z" if start_date else None
     end_date   = date_parser.parse(end_date).isoformat()   + "Z" if end_date   else None
 
+    # adding the start and end date to the filters if need be
     if start_date and end_date:
         params["$filter"] = "resultTime ge " + start_date + " and resultTime le " + end_date
     elif start_date:
         params["$filter"] = "resultTime ge " + start_date
 
     response = req.get(link, params = params).json()
+    # no response? just return something
     if len(response["value"]) == 0:
         return []
     unparsed_observations = response["value"][0]["dataArray"]
@@ -110,11 +113,7 @@ def get_obs_for_link(link, start_date = None, end_date = None):
     """
     if "@iot.nextLink" in response:
         all_observations = get_obs_for_link(response['@iot.nextLink']) + observations
-        """
-        sort the observations by time.
-        might be inefficient because of sorting at each recursion,
-        but who cares
-        """
+        # sort the observations by time if this is the top of the recursion
         if not is_iot_next_link:
             return sorted(all_observations, key=lambda x: x[1])
         return all_observations
